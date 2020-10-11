@@ -169,3 +169,32 @@
     color: blue;
     font-weight: bold;
 }
+
+
+/* Image uploader section */
+
+.image_preview{
+    width: 600px;
+    min-height: 400px;
+    border: 2px solid white;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+}
+
+.img_prev_img{
+    display: none;
+    width: 100%
+}
+
+#inputFile{
+    margin-top: 15px;
+
+}
+
+#resultsPreview{
+    margin-top: 100px;
+}
