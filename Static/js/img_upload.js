@@ -1,4 +1,4 @@
-const inputFile = document.getElementById('inputFile');
+const inputFile = document.getElementById('.inputFile');
 const prevContainer = document.getElementById('imagePreview');
 const prevImg = prevContainer.querySelector('.img_prev_img');
 const prevDeftext = prevContainer.querySelector('.img_prev_text');
