@@ -1,69 +1,62 @@
-/* *
-{
-    margin: 0;
-    padding: 0;
-} */
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+}
+
 
 /* Navigation */
-#nav-bar
-{
+
+#nav-bar{
     position: sticky;
     top: 0;
     z-index: 501;
 }
 
-.navbar-brand img
 /* Image size and Location */
-{
+.navbar-brand img{
     height: 60px;
     padding-left: 30px;
 }
 
-.navbar-nav li
+
 /* Size of Navbar and spacing of text */
-{
+.navbar-nav li{
     padding: 0 10px;
 }
 
-.navbar-nav li a
-{
+.navbar-nav li a{
     float: right;
     text-align: left;
 }
 
-#nav-bar ul li a:hover
-{
+#nav-bar ul li a:hover{
     color: lightblue!important;
 }
 
-.navbar
-{
+.navbar{
     background: darkblue;
 }
 
-.navbar-toggler
-{
+.navbar-toggler{
     border: none!important;
 }
 
-.nav-link
-{
+.nav-link{
     color: darkblue!important;
     font-weight: 600;
     font-size: 25px;
 }
 
 
-
-#slider
-{
+#slider{
     width: 100%;
 }
 
 
 /* To fit images in the carousel */
-.carousel-item
-{
+
+.carousel-item{
     position: relative;
     overflow: hidden;
     width: inherit;
@@ -71,8 +64,7 @@
 }
 
 
-.carousel-caption
-{
+.carousel-caption{
     top: 50%;
     transform: translateY(-50%);
     bottom: initial!important;
@@ -82,43 +74,54 @@
     z-index: 500;
 }
 
-.carousel-caption h3
-{
+.carousel-caption h3{
     font-size: 80px;
     color: lightblue;
 }
 
 
 /* About the Project */
-#about
-{
-    padding-top: 10px;
-    padding-bottom: 10px;
+#about{
     color: black;
     background: lightblue;
 }
 
-#about h1
-{
+#about h1{
     text-align: center;
     color: black;
 }
 
 
-.about-content
-{
+.about-content{
     text-align: center;
     padding-top: 10px;
     color: black;
     font-weight: 600;
     font-size: 16px;
+    background: lightblue;
+}
+
+/* Skin condition section */
+
+#skinCondition {
+    color: black;
+    background: white;
+}
+
+#skinCondition h1{
+    text-align: center;
+}
+
+#skinCondition-content h3{
+    padding-top: 10px;
 }
 
 
+
+
 /* Information Display */
-#information
-{
-    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(76, 102, 219, 0.8)), url(Images/Medicine_Logo.jpg);
+#information{
+    background-image: linear-gradient(rgba(0,0,0,0.8), rgba(76, 102, 219, 0.8));
     background-size: cover;
     background-position: center;
     color: rgb(197, 197, 197)!important;
@@ -127,48 +130,41 @@
     padding-bottom: 550px;
 }
 
-#information h2
-{
+#information h2{
     text-align: center;
     font-size: 45px;
     
 }
 
-#contact
-{
+#contact{
     background: lightblue;
     padding-top: 10px;
     padding-bottom: 40px;
     color: black;
 }
 
-#contact h4
-{
+#contact h4{
     text-align: center;
     font-size: 40px;
 }
 
-.contact-form
-{
+.contact-form{
     padding: 15px;
 }
 
-.form-control
-{
+.form-control{
     border-radius: 0 !important;
     border: none !important;
 }
 
-.follow
-{
+.follow{
     background: lightblue ;
     padding: 7px;
     margin: 15px;
 }
 
 
-.contact-info .fa
-{
+.contact-info .fa{
     margin: 5px;
     color: blue;
     font-weight: bold;
@@ -216,18 +212,25 @@ table{
     margin-top: 30px;
 }
 
-/* tr:nth-child(even) {
-    background-color: #f2f2f2;
-} */
 
 th, td {
     padding: 15px;
     text-align: left;
+}
+
+/* Image Section */
+
+.responsive-img1 {
+    max-width: 80%;
+    height: auto;
   }
 
-#inner-grid {
-    margin-top: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
- }
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+}
+
+
+#methodList {
+    text-align: left;
+}
