@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template, jsonify, flash, request, redirect, url_for
 from werkzeug.utils import secure_filename
-# from flask import send_from_directory
+from flask import send_from_directory
 from gevent.pywsgi import WSGIServer
 from yourapplication import app
 http_server = WSGIServer(('', 5000), app)
