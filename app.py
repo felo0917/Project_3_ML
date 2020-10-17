@@ -8,40 +8,42 @@ from yourapplication import app
 http_server = WSGIServer(('', 5000), app)
 http_server.serve_forever()
 
-import tensorflow as tf
-from tensorflow import keras
 
-from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
-from tensorflow.keras.models import load_model
-from tensorflow.keras.preprocessing import image
-
-
-UPLOAD_FOLDER = '/path/to/the/uploads'
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
-
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
+from get_prediction import get_prediction
+from generate_html import generate_html
+from torchvision import models
+import json
 
 
 ######## INITIATE FLASK APP #########################
 app= Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
+
+# put model stuff here
+
+# define the function to get the images from the url and predicted the class
+def get_image_class(path):
+    # get images from the URL and store it in a given path
+    get_images(path)
+    # predict the image class of the images with provided directory
+    path = get_path(path)
+    images_with_tags = get_prediction(model, imagenet_class_mapping, path)
+    # generate html file to render once we predict the classes
+    generate_html(images_with_tags)
+
+@# by deafult render the "home.html"    
 @app.route('/')
 def home():
     return render_template('home.html')
-
-
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
-    return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
 
 @app.route('/', methods=['POST', 'GET'])
 def get_data():
     if request.method == 'POST':
         user = request.form['search']
+        # if search button hit, call the function get_image_class 
         get_image_class(user)
+        #render the image_class.html
         return redirect(url_for('success', name=get_directory(user)))
 
 
@@ -50,10 +52,5 @@ def success(name):
     return render_template('image_class.html')
 
 
-# @app.route("/Skin")
-# def graph():
-
-#     return  render_template('Skin_index_copy.html')
-
-if __name__ == '__main__':
+if __name__ == '__main__' :
     app.run(debug=True)
