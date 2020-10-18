@@ -6,9 +6,12 @@ import glob
 import re
 import numpy as np
 # Keras
-from keras.applications.imagenet_utils import preprocess_input, decode_predictions
-from keras.models import load_model
-from keras.preprocessing import image
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
+# from keras.applications.vgg16 import preprocess_input, decode_prediction
+from tensorflow.keras.models import load_model
+from tensorflow.keras.preprocessing import image
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
@@ -16,7 +19,7 @@ from gevent.pywsgi import WSGIServer
 # Define a flask app
 app = Flask(__name__)
 # Model saved with Keras model.save()
-MODEL_PATH = 'static/model/keras_cifar10_trained_model.h5'
+MODEL_PATH = 'Static\model\keras_cifar10_trained_model.h5' 
 # Load your trained model
 model = load_model(MODEL_PATH)
 # model._make_predict_function()          # Necessary
