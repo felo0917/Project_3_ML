@@ -193,13 +193,15 @@
        <!-- image input section -->
 
        <center>
+        <form method = 'POST' role ='form' action = '/predict' enctype = multipart/form-data>
         <input type="file" name='inputFile' id="inputFile">
         <div class="image_preview" id='imagePreview'>
             <img src="" alt="preview" class="img_prev_img">
             <span class="img_prev_text">Image Preview</span>
         </div>
         
-        <button type="button" id="picSubmitbutton">Submit for Results</button>
+        <button type="submit" value = 'submit' id="picSubmitbutton">Submit for Results</button>
+        </form>
         
         <h2 id='resultsPreview'>Results</h2>
         
