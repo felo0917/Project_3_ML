@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Skin condition app</title>
+<style>
+* {
+    font-size: 30px;
+}
+</style>
+</head>
+<body>
+    <input id="image-selector" type="file"/>
+    <button id="predict-button">Predict</button>
+    <p style="font-weight:bold">Predictions</p>
+    <p>Eczema: <span id="Eczema-prediction"></span></p>
+    <p>Vascular Tumors: <span id="Vascular Tumors-prediction"></span></p>
+    <p>Bullous Disease: <span id="Bullous Disease-prediction"></span></p>
+    <p>Nail Fungus: <span id="Nail Fungus-prediction"></span></p>
+    <img id="selected-image" src="">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    let base64Image;
+    $("#image-selector").change(function(){
+        let reader = new FileReader();
+        reader.onload = function(e) {
+            let dataURL = reader.result;
+            $('#selected-image').attr("src", dataURL);
+            base64Image = dataURL.replace("data:image/jpg;base64, ","");
+            console.log(base64Image);
+        }
+        reader.readAsDataURL($("#image-selector")[0].files[0]);
+        $("#Eczema-prediction").text("");
+        $("#Vascular Tumors-prediction").text("");
+        $("#Bullous Disease-prediction").text("");
+        $("#Nail Fungus-prediction").text("");
+    });
+
+    $("#predict-button").click(function(event){
+        let message = {
+            image: base64Image
+        }
+        console.log(message);
+        $.post("http://127.0.0.1:5000", JSON.stringify(message), function(response){
+            $("#Eczema-prediction").text(response.prediction.Eczema.toFixed(6));
+            $("#Vascular Tumors-prediction").text(response.prediction.Vascular_Tumors.toFixed(6));
+            $("#Bullous Disease-prediction").text(response.prediction.Bullous_Disease.toFixed(6));
+            $("#Nail Fungus-prediction").text(response.prediction.Nail_Fungus.toFixed(6));
+            console.log(response)
+        });
+    });
+</script>
+</body>
+</html>
