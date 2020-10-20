@@ -7,6 +7,7 @@ from tensorflow.keras.applications.imagenet_utils import preprocess_input, decod
 # from keras.applications.vgg16 import preprocess_input, decode_prediction
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
+from keras import preprocessing
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
 from werkzeug.utils import secure_filename
@@ -60,13 +61,19 @@ def upload():
         file_path = os.path.join(app.config['UPLOAD_FOLDER'],f.filename)
         print(file_path)
         f.save(file_path)
+        type_1 = preprocessing.image.load_img(file_path, target_size = (224, 224))
+        input_arr = keras.preprocessing.image.img_to_array(type_1)
+        input_arr = np.array([input_arr])  # Convert single image to a batch.
+        # type_1_x = np.expand_dims(type_1, axis=0)
         # Make prediction
-        preds = model_predict(file_path, model)
+        preds = model_predict(input_arr, model)
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
         # pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
         # result = str(pred_class[0][0][1])               # Convert to string
-        result = ''
+        result = preds
+
+        print(result)
         
     return render_template('index.html', result=result)
 
