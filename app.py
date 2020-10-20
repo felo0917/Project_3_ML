@@ -22,9 +22,9 @@ from gevent.pywsgi import WSGIServer
 # Define a flask app
 app = Flask(__name__)
 
-MODEL_PATH = 'Static\model\skin_train.h5'
+# MODEL_PATH = 'Static\model\skin_train.h5'
 
-model = load_model(MODEL_PATH)
+# model = load_model(MODEL_PATH)
 # model._make_predict_function()
 
 # def model_predict(img_path, model):
