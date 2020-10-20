@@ -53,7 +53,7 @@ def predict():
             'Bullous_Disease': prediction[0][2],
             'Nail_Fungus': prediction[0][3]
         }
-    
+    }
     return   jsonify(response)
 if __name__ == '__main__':
     app.run(debug=True)
