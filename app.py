@@ -25,7 +25,7 @@ app = Flask(__name__)
 MODEL_PATH = 'Static\model\skin_train.h5'
 
 model = load_model(MODEL_PATH)
-model._make_predict_function()
+# model._make_predict_function()
 
 def model_predict(img_path, model):
     img = image.load_img(img_path, target_size=(224, 224))

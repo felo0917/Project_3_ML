@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
-# from keras.applications.vgg16 import preprocess_input, decode_prediction
+# from keras.applications
 from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from keras import preprocessing
@@ -68,9 +68,9 @@ def upload():
         # Make prediction
         preds = model_predict(input_arr, model)
         # Process your result for human
-        # pred_class = preds.argmax(axis=-1)            # Simple argmax
-        # pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
-        # result = str(pred_class[0][0][1])               # Convert to string
+        pred_class = preds.argmax(axis=-1)            # Simple argmax
+        pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
+        result = str(pred_class[0][0][1])               # Convert to string
         result = preds
 
         print(result)
