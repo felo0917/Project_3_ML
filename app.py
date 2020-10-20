@@ -1,59 +1,67 @@
-import base64
+  
+from __future__ import division, print_function
+# coding=utf-8
+import sys
+import os
+import glob
+import re
 import numpy as np
-import io
-from PIL import Image
-import keras 
-from keras import backend as k 
-from keras.models import Sequential 
-from keras.models import load_model 
-from keras.preprocessing.image import ImageDataGenerator
-from keras.preprocessing.image import img_to_array
-from flask import request,render_template
-from flask import jsonify 
-from flask import Flask 
+import tensorflow
+from tensorflow import keras
 
+# Keras
+from keras.applications.imagenet_utils import preprocess_input, decode_predictions
+from keras.models import load_model
+from keras.preprocessing import image
 
+# Flask utils
+from flask import Flask, redirect, url_for, request, render_template
+from werkzeug.utils import secure_filename
+from gevent.pywsgi import WSGIServer
+
+# Define a flask app
 app = Flask(__name__)
 
-def get_model():
-    global model
-    model = load_model('Static/model/keras_cifar10_trained_model.h5')
+MODEL_PATH = 'Static\model\skin_train.h5'
 
-    print(" *  Model loaded!")
+model = load_model(MODEL_PATH)
+model.make_predict_function()
+model.summary()
+def model_predict(img_path, model):
+    img = image.load_img(img_path, target_size=(224, 224))
 
-def preprocess_image(image, target_size):
-    if image.mode !="RGB":
-        image = image.convert("RGB")
-    image = image.resize(target_size)
-    image = img_to_array(image)
-    image = np.expand_dims(image, axis=0)
-    return image 
+    #preprocessing the image
+    x = image.img_to_array(img)
 
-print(" * Loading keras model...")
-get_model()
+    x = np.expand_dims(x, axis=0)
 
-@app.route("/")
-def home():
-    return render_template("prediction.html")
+    x = preprocess_input(x, mode='caffe')
 
-@app.route("/predict" , methods=["POST", "GET"])
-def predict():
-    message = request.get_json(force=True)
-    encoded = message['image']
-    decoded = base64.b64decode(encoded)
-    image = Image.open(io.BytesIO(decoded))
-    processed_image = preprocess_image(image, target_size= (224, 224))
+    preds = model.predict(x)
+    return preds
 
-    prediction = model.predict(processed_image).tolist()
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('flask.html')
 
-    response = {
-        'prediction':  {
-            'Eczema': prediction[0][0],
-            'Vascular_Tumors': prediction[0][1],
-            'Bullous_Disease': prediction[0][2],
-            'Nail_Fungus': prediction[0][3]
-        }
-    }
-    return   jsonify(response)
+@app.route('/predict', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        f = request.files['file']
+
+        #save the file to ./uploads
+        basepath = os.path.dirname(__file__)
+        file_path = os.path.join(
+            basepath, 'uploads', secure_filename(f.filename))
+        f.save(file_path)
+
+        preds = model_predict(file_path, model)
+
+        pred_class = decode_predictions(preds, top=1)
+        result = str(pred_class[0][0][1])
+        return result
+    return None
+
+
 if __name__ == '__main__':
     app.run(debug=True)
