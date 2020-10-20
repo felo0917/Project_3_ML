@@ -8,7 +8,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Skin Identifier</title>
+    <title>Skin Disease Imagery Prediction Dashboard</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,100&display=swap" rel="stylesheet">
    
@@ -105,7 +105,7 @@
                     <h1>About the Project</h1>
                     <div class="about-content">
                         <p> A mere mark the size of a mole to enormous patches of 
-                            inflamed discolored scales of skin can be a sign skin disease.
+                            inflamed discolored scaled skin can be a skin disease indication.
                             Early dectection and diagnosis by a licensed medical professional
                             is imperative to proper treatment and prognosis. In an effort to aid in this detection 
                             as part of a deep neural network machine learning project this application will be utilized to idenitfy various
@@ -113,7 +113,7 @@
                             Once identified the user should consult with a licensed medical professional for futher examination and diagnosis.</p>
                         <br>
                         <br>
-                        <center><h2>Methods Used to Develop our Dashboard:</h2>
+                        <center><h2> Web development tools utilized:</h2>
                         <br>
                         <br>
                         <h3>HTML/CSS</h3>
@@ -193,8 +193,10 @@
        <!-- image input section -->
 
        <center>
-        <form method = 'POST' role ='form' action = '/predict' enctype = multipart/form-data>
-        <input type="file" name='inputFile' id="inputFile">
+        <div class="container">
+            <div id="content" style="margin-top:2em">{% block content %}{% endblock %}</div>
+        </div>
+        <!-- <input type="file" name='inputFile' id="inputFile">
         <div class="image_preview" id='imagePreview'>
             <img src="" alt="preview" class="img_prev_img">
             <span class="img_prev_text">Image Preview</span>
@@ -203,10 +205,10 @@
         <button type="submit" value = 'submit' id="picSubmitbutton">Submit for Results</button>
         </form>
         
-        <h2 id='resultsPreview'>Results</h2>
+        <h2 id='resultsPreview'>Results</h2> -->
         
         <!-- Results section -->
-        <div class="container">
+        <!-- <div class="container">
             <div class="row">
               <div class="col-sm">
                 <table id='resultsTable'>
@@ -239,7 +241,7 @@
               
               </div>
             </div>
-        </div>
+        </div> -->
 
         </center>
 
@@ -296,5 +298,9 @@
   
 
 </body>
+
+<footer>
+    <script src="{{ url_for('static', filename='js/main.js') }}" type="text/javascript"></script>    
+</footer>
 
 </html>
