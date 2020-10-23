@@ -17,7 +17,7 @@ classes = ['Eczema', 'Vascular Tumors', 'Bullous Disease', 'Nail Fungus']
 
 @app.route("/")
 def index():
-    return render_template("index1.html")
+    return render_template("index.html")
 
 @app.route("/upload", methods=["POST"])
 def upload():
