@@ -29,7 +29,7 @@ The dataset  has 23 categories of skin diseases with a total of 19500 pictures a
 
 #### Model considered for the app </br >
 
-4 classes model('Eczema', 'Vascular Tumors', 'Bullous Disease', 'Nail Fungus'). We are close to increasing our 23 classes model accuracy rate up to 80% using vgg16 mole and hyperparameter tuning 
+4 classes model('Eczema', 'Vascular Tumors', 'Bullous Disease', 'Nail Fungus'). We are close to increasing our 23 classes model accuracy rate up to 80% using vgg16 model and hyperparameter tuning 
 
 <h3>issue</h3>
 <br>
