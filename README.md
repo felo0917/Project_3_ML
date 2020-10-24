@@ -27,18 +27,16 @@ The dataset  has 23 categories of skin diseases with a total of 19500 pictures a
 
  <br>
 
+#### Model considered for the app </br >
+
+4 classes model('Eczema', 'Vascular Tumors', 'Bullous Disease', 'Nail Fungus'). We are close to increasing our 23 classes model accuracy rate up to 80% using vgg16 mole and hyperparameter tuning 
+
+<h3>issue</h3>
+<br>
+
+-The app is running fine on the local computer and give the accurate prediction for the 4 classes model, but on Heroku, it runs into Error 500 when trying to give the prediction 
+
+##### Local Predict Test:
 
 
-
-
-
-
-
- #### **Team Members**:
-
-1. Dany Koudede the great 
-2. Felix Gonzalez
-3. Luca Okose
-4. Lana Paltseva
-5. DeAndrea Norris
-6. Aaron Soto
+![](project_3_Local_%20app_test.gif)
